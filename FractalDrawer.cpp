@@ -36,6 +36,5 @@ void inputValidity(int argc, char*argv[])
 int main(int argc, char*argv[])
 {
     inputValidity(argc, argv);
-
 }
 
