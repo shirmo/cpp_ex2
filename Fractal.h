@@ -12,53 +12,35 @@
 class Fractal
 {
 public:
-    Fractal(int dim)
-    std::vector<std::string> fractelize() const;
+    Fractal(const int& dim);
+    Fractal(const Fractal& f);
+    ~Fractal();
+    Fractal& operator=(const Fractal& f);
+    Fractal operator=(const Fractal& f) const;
+    void createShape();
 
-private:
+
+protected:
     int grid_size;
     int dim;
-
+    bool** pattern;
+    bool** shape;
 };
-
-
-#endif //CPP_EX2_FRACTAL_H
-
-#ifndef CPP_EX2_FRACTAL_H
-#define CPP_EX2_FRACTAL_H
-
-
-
-class Fractal
-{
-public:
-    Fractal(int dim)
-    virtual std::vector<std::string> fractelize() const;
-
-private:
-    int grid_size;
-    int dim;
-    char* pattern;
-
-};
-
-#endif //CPP_EX2_FRACTAL_H
-
-
-#ifndef CPP_EX2_FRACTAL_H
-#define CPP_EX2_FRACTAL_H
-
 
 
 class SC: public Fractal
 {
-public:
-    std::vector<std::string> fractelize() const;
+    SC(const int& dim);
+};
 
-private:
-    int grid_size;
-    int dim;
+class ST: public Fractal
+{
+    ST(const int& dim);
+};
 
+class VF: public Fractal
+{
+    VF(const int& dim);
 };
 
 #endif //CPP_EX2_FRACTAL_H
