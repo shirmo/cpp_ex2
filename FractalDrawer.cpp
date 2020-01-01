@@ -10,6 +10,8 @@
 #define SC 1
 #define ST 2
 #define VF 3
+#define LOWER_BOUND 0
+#define UPPER_BOUND 6
 
 void inputValidity(int argc, char*argv[])
 {
@@ -36,5 +38,6 @@ void inputValidity(int argc, char*argv[])
 int main(int argc, char*argv[])
 {
     inputValidity(argc, argv);
+
 }
 
