@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "Fractal.h"
 
 #define FILE_AMOUNT 2
 #define FILE_POSITION 1
@@ -7,9 +8,7 @@
 #define VALID_EXTENSION "csv"
 #define USAGE "Usage: FractalDrawer <file path>"
 #define INVALID_ARGS "Invalid input"
-#define SC 1
-#define ST 2
-#define VF 3
+
 #define LOWER_BOUND 0
 #define UPPER_BOUND 6
 
@@ -37,7 +36,8 @@ void inputValidity(int argc, char*argv[])
 
 int main(int argc, char*argv[])
 {
-    inputValidity(argc, argv);
-
+    //inputValidity(argc, argv);
+    Fractal * carpet = new SC(4);
+    carpet->printFractal();
 }
 

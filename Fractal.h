@@ -12,13 +12,12 @@ typedef std::vector<std::vector<bool>> fractalVec;
 class Fractal
 {
 public:
-    Fractal(const int& dim);
+    Fractal(const int& dimension);
     Fractal(const Fractal& f);
-    ~Fractal();
-    Fractal& operator=(const Fractal& f);
-    Fractal operator=(const Fractal& f) const;
-    void createShape();
-
+   // ~Fractal();
+   // Fractal& operator=(const Fractal& f);
+   // Fractal operator=(const Fractal& f) const;
+    void printFractal();
 
 protected:
     int basicSize;
@@ -28,28 +27,32 @@ protected:
     fractalVec shape;
 
     bool populateFractal(const int& row,const int& col, int n);
+    void createShape();
 };
 
 
 class SC: public Fractal
 {
-    SC(const int& dim);
+public:
+    SC(const int& dimension);
     SC(const Fractal& f);
-    ~SC();
+    //~SC();
 };
 
 class ST: public Fractal
 {
-    ST(const int& dim);
+public:
+    ST(const int& dimension);
     ST(const Fractal& f);
-    ~ST();
+    //~ST();
 };
 
 class VF: public Fractal
 {
+public:
     VF(const int& dim);
     VF(const Fractal& f);
-    ~VF();
+    //~VF();
 };
 
 #endif //CPP_EX2_FRACTAL_H
