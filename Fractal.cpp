@@ -111,42 +111,56 @@ VF::VF(const Fractal& f):Fractal(f)
 }
 
 
-bool Fractal::populateFractal(const int& row, const int& col, int n)
+void Fractal::populateFractal(const int& row, const int& col, int n)
 {
-    int newRow;
-    int newCol;
-    if(n-1 == 0)
+    int newRow = row;
+    int newCol = col;
+    if (n==0)
     {
-        newRow = row/basicSize;
-        newCol = col/basicSize;
-        return pattern[newRow][newCol];
+        shape[newRow][newCol] = true;
+        return;
     }
-    else
+    int diff = (int) pow(basicSize, n-1);
+    for (int i = 0; i < basicSize; ++i)
     {
-        int divisor = (int) pow(basicSize,n-1);
-        newRow = row/divisor;
-        newCol = col/divisor;
-        if (pattern[newRow][newCol])
+        newCol = col;
+        for (int k = 0; k < basicSize; ++k)
         {
-            populateFractal(row, col, n-1);
+            if (pattern[i][k])
+            {
+                populateFractal(newRow, newCol, n-1);
+            }
+            newCol += diff;
         }
-        else
-        {
-            return false;
-        }
+        newRow += diff;
     }
+        // newCol
+//    if(n-1 == 0)
+//    {
+//        newRow = row/basicSize;
+//        newCol = col/basicSize;
+//        return pattern[newRow][newCol];
+//    }
+//    else
+//    {
+//        int divisor = (int) pow(basicSize,n-1);
+//        newRow = row/divisor;
+//        newCol = col/divisor;
+//        if (pattern[newRow][newCol])
+//        {
+//            populateFractal(row, col, n-1);
+//        }
+//        else
+//        {
+//            return false;
+//        }
+//    }
 }
 
 
 void Fractal::createShape()
 {
-    for (int m = 0; m < gridSize; ++m)
-    {
-        for (int k = 0; k < gridSize; ++k)
-        {
-            shape[m][k] = populateFractal(m,k,dim);
-        }
-    }
+    populateFractal(0,0, dim);
 }
 
 void Fractal::printFractal()
@@ -159,6 +173,7 @@ void Fractal::printFractal()
             printVal = (shape[i][k])? ASTRIX:SPC;
             std::cout<<printVal;
         }
+        std::cout<<std::endl;
     }
 }
 

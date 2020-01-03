@@ -26,7 +26,7 @@ protected:
     fractalVec pattern;
     fractalVec shape;
 
-    bool populateFractal(const int& row,const int& col, int n);
+    void populateFractal(const int& row,const int& col, int n);
     void createShape();
 };
 

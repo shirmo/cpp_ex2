@@ -37,7 +37,7 @@ void inputValidity(int argc, char*argv[])
 int main(int argc, char*argv[])
 {
     //inputValidity(argc, argv);
-    Fractal * carpet = new SC(4);
+    Fractal * carpet = new ST(4);
     carpet->printFractal();
 }
 
