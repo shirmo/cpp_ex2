@@ -10,6 +10,10 @@
 #define ASTRIX '#'
 #define SPC ' '
 
+/**
+ * c'tor
+ * @param dimension int representing the wanted fractal size
+ */
 Fractal::Fractal(const int& dimension)
 {
     basicSize = 0;
@@ -25,7 +29,10 @@ Fractal::Fractal(const int& dimension)
     pattern = fractalVec2;
 }
 
-
+/**
+ * Sierpinski Carpet fractal c'tor
+ * @param dimension the required fractal dimension
+ */
 SC::SC(const int& dimension): Fractal(dimension)
 {
     basicSize = SC_SIZE;
@@ -43,7 +50,10 @@ SC::SC(const int& dimension): Fractal(dimension)
     createShape();
 }
 
-
+/**
+ * Sierpinski Triangle fractal c'tor
+ * @param dimension the required fractal dimension
+ */
 ST::ST(const int& dimension): Fractal(dimension)
 {
     basicSize = ST_SIZE;
@@ -61,7 +71,10 @@ ST::ST(const int& dimension): Fractal(dimension)
     createShape();
 }
 
-
+/**
+ * Vicsek fractal c'tor
+ * @param dimension the required fractal dimension
+ */
 VF::VF(const int& dimension): Fractal(dimension)
 {
     basicSize = VF_SIZE;
@@ -79,8 +92,12 @@ VF::VF(const int& dimension): Fractal(dimension)
     createShape();
 }
 
-
-
+/**
+ * Recursively passes over the grids cells and check if they should be true or false
+ * @param row a row index of a grid's cell
+ * @param col a col index of a grid's cell
+ * @param n dimension of a fractal
+ */
 void Fractal::populateFractal(const int& row, const int& col, int n)
 {
     int newRow = row;
@@ -106,12 +123,17 @@ void Fractal::populateFractal(const int& row, const int& col, int n)
     }
 }
 
-
+/**
+ * Calls the recursive function populateFractal with the right initialization params
+ */
 void Fractal::createShape()
 {
     populateFractal(0,0, dim);
 }
 
+/**
+ * prints a fractal object
+ */
 void Fractal::printFractal()
 {
     char printVal;

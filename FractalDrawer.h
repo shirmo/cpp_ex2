@@ -1,8 +1,29 @@
 #ifndef CPP_EX2_FRACTAL_DRAWERE_H
 #define CPP_EX2_FRACTAL_DRAWERE_H
 
+/**
+ * A parser class that parses a csv file, creates fractals vector and holds it.
+ */
 class Parser {
+
+private:
+    std::vector<Fractal*>& fractal;
+
 public:
+    /**
+     * c'tor
+     * @param argc amount of arguments
+     * @param argv arguments array
+     * @param fractal a list to be populated
+     */
+    Parser(int argc, char *argv[], std::vector<Fractal *> &fractal);
+
+    /**
+     * A getter to the fractal vector
+     * @return a fractal vector
+     */
+    std::vector<Fractal*>& getFractalVec() const;
+
     /**
      * Check if the input path is an actual file
      * @param fPath input path

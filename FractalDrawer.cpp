@@ -22,6 +22,26 @@ typedef boost::tokenizer< boost::escaped_list_separator<char> > Tokenizer;
 #define VICSEK 3
 
 /**
+ * c'tor
+ * @param argc amount of arguments
+ * @param argv arguments array
+ * @param fractal a list to be populated
+ */
+Parser::Parser(int argc, char *argv[], std::vector<Fractal *> &fractal) : fractal(fractal)
+{
+    argsValidity(argc, argv);
+    doesFileExist(argv[1]);
+    std::string path = argv[1];
+    fractal = parseFile(path, fractal);
+    for (int i = (int) fractal.size()-1 ; i >= 0; --i)
+    {
+        fractal[i]->printFractal();
+        delete fractal[i];
+    }
+    fractal.clear();
+}
+
+/**
  * Prints an error message and exits the program
  */
 void Parser::parseError() const
@@ -175,15 +195,20 @@ std::vector<Fractal*>& Parser::parseFile(std::string& path, std::vector<Fractal 
    return f;
 }
 
+/**
+ * A getter to the fractal vector
+ * @return a fractal vector
+ */
+std::vector<Fractal*>& Parser::getFractalVec() const
+{
+    return this->fractal;
+}
 
 int main(int argc, char*argv[])
 {
-    Parser p = Parser();
-    p.argsValidity(argc, argv);
-    p.doesFileExist(argv[1]);
     std::vector<Fractal*> fractal;
-    std::string path = argv[1];
-    fractal = p.parseFile(path, fractal);
+    Parser p = Parser(argc, argv, fractal);
+    fractal = p.getFractalVec();
     for (int i = (int) fractal.size()-1 ; i >= 0; --i)
     {
         fractal[i]->printFractal();
