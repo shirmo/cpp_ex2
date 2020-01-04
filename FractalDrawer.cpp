@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include "Fractal.h"
-#include "FractalDrawer.h"
 #include <boost/filesystem.hpp>
 #include <boost/tokenizer.hpp>
 
@@ -204,6 +203,12 @@ std::vector<Fractal*>& Parser::getFractalVec() const
     return this->fractal;
 }
 
+/**
+ * Main function that operates the system
+ * @param argc amount of argument given
+ * @param argv the arguments
+ * @return EXIT_SUCCESS
+ */
 int main(int argc, char*argv[])
 {
     std::vector<Fractal*> fractal;
@@ -215,5 +220,6 @@ int main(int argc, char*argv[])
         delete fractal[i];
     }
     fractal.clear();
+    return EXIT_SUCCESS;
 }
 
