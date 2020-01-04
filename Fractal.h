@@ -12,11 +12,7 @@ typedef std::vector<std::vector<bool>> fractalVec;
 class Fractal
 {
 public:
-    Fractal(const int& dimension);
-    Fractal(const Fractal& f);
-   // ~Fractal();
-   // Fractal& operator=(const Fractal& f);
-   // Fractal operator=(const Fractal& f) const;
+    explicit Fractal(const int& dimension = 0);
     void printFractal();
 
 protected:
@@ -34,25 +30,19 @@ protected:
 class SC: public Fractal
 {
 public:
-    SC(const int& dimension);
-    SC(const Fractal& f);
-    //~SC();
+    explicit SC(const int& dimension);
 };
 
 class ST: public Fractal
 {
 public:
-    ST(const int& dimension);
-    ST(const Fractal& f);
-    //~ST();
+    explicit ST(const int& dimension);
 };
 
 class VF: public Fractal
 {
 public:
-    VF(const int& dim);
-    VF(const Fractal& f);
-    //~VF();
+    explicit VF(const int& dim);
 };
 
 #endif //CPP_EX2_FRACTAL_H

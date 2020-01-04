@@ -25,27 +25,6 @@ Fractal::Fractal(const int& dimension)
     pattern = fractalVec2;
 }
 
-//todo ask ilan if it's valid the iteration over the vector. maybe I should copy vec
-Fractal::Fractal(const Fractal& f)
-{
-    basicSize = f.basicSize;
-    gridSize = f.gridSize;
-    dim = f.dim;
-    for (int i = 0; i < basicSize; ++i)
-    {
-        for (int k = 0; k < basicSize; ++k)
-        {
-            pattern[i][k] = f.pattern[i][k];
-        }
-    }
-    for (int i = 0; i < gridSize; ++i)
-    {
-        for (int k = 0; k < gridSize; ++k)
-        {
-            shape[i][k] = f.shape[i][k];
-        }
-    }
-}
 
 SC::SC(const int& dimension): Fractal(dimension)
 {
@@ -64,9 +43,6 @@ SC::SC(const int& dimension): Fractal(dimension)
     createShape();
 }
 
-SC::SC(const Fractal& f):Fractal(f)
-{
-}
 
 ST::ST(const int& dimension): Fractal(dimension)
 {
@@ -85,9 +61,6 @@ ST::ST(const int& dimension): Fractal(dimension)
     createShape();
 }
 
-ST::ST(const Fractal& f): Fractal(f)
-{
-}
 
 VF::VF(const int& dimension): Fractal(dimension)
 {
@@ -106,9 +79,6 @@ VF::VF(const int& dimension): Fractal(dimension)
     createShape();
 }
 
-VF::VF(const Fractal& f):Fractal(f)
-{
-}
 
 
 void Fractal::populateFractal(const int& row, const int& col, int n)
@@ -134,27 +104,6 @@ void Fractal::populateFractal(const int& row, const int& col, int n)
         }
         newRow += diff;
     }
-        // newCol
-//    if(n-1 == 0)
-//    {
-//        newRow = row/basicSize;
-//        newCol = col/basicSize;
-//        return pattern[newRow][newCol];
-//    }
-//    else
-//    {
-//        int divisor = (int) pow(basicSize,n-1);
-//        newRow = row/divisor;
-//        newCol = col/divisor;
-//        if (pattern[newRow][newCol])
-//        {
-//            populateFractal(row, col, n-1);
-//        }
-//        else
-//        {
-//            return false;
-//        }
-//    }
 }
 
 
@@ -175,6 +124,7 @@ void Fractal::printFractal()
         }
         std::cout<<std::endl;
     }
+    std::cout<<std::endl;
 }
 
 

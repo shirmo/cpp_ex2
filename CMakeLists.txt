@@ -1,6 +1,10 @@
-cmake_minimum_required(VERSION 3.14)
-project(cpp_ex2)
+cmake_minimum_required(VERSION 3.12.3)
+project(FractalDrawer)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(cpp_ex2 FractalDrawer.cpp Fractal.cpp Fractal.h)
+find_package(Boost COMPONENTS filesystem REQUIRED)
+include_directories(${Boost_INCLUDE_DIR})
+
+add_executable(FractalDrawer FractalDrawer.cpp Fractal.cpp Fractal.h)
+target_link_libraries(FractalDrawer ${Boost_LIBRARIES})
