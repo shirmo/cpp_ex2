@@ -5,7 +5,7 @@
 #include <boost/tokenizer.hpp>
 
 namespace fs = boost::filesystem;
-typedef boost::tokenizer< boost::escaped_list_separator<char> > Tokenizer;
+typedef boost::tokenizer< boost::char_separator<char> > Tokenizer;
 
 #define FILE_AMOUNT 2
 #define FILE_POSITION 1
@@ -19,6 +19,7 @@ typedef boost::tokenizer< boost::escaped_list_separator<char> > Tokenizer;
 #define CARPET 1
 #define TRIANGLE 2
 #define VICSEK 3
+#define EMPTY 0
 
 /**
  * c'tor
@@ -79,12 +80,34 @@ void Parser::typeValidity(int type) const
  */
 void Parser::checkIfInt(std::string& fileCell) const
 {
-    std::string::const_iterator it = fileCell.begin();
-    while (it != fileCell.end() && std::isdigit(*it)) ++it;
-    if(!(!fileCell.empty() && it == fileCell.end()))
+    int digitFlag = 0, times = 0;
+    for (auto c : fileCell)
     {
-        parseError();
+        if(!isdigit(c))
+        {
+            if(isspace(c) && digitFlag && !times)
+            {
+                times++;
+                continue;
+            }
+            parseError();
+        }
+        digitFlag++;
+        if(digitFlag > 1 || times > 1)
+        {
+            parseError();
+        }
     }
+
+//    std::string::const_iterator it = fileCell.begin();
+//    while (it != fileCell.end() && std::isdigit(*it))
+//    {
+//        ++it;
+//    }
+//    if(!(!fileCell.empty() && it == fileCell.end()))
+//    {
+//        parseError();
+//    }
 }
 
 /**
@@ -108,7 +131,7 @@ void Parser::argsValidity(int argc, char **argv) const
     }
     else
     {
-        std::cerr<<USAGE<<std::endl;
+        std::cerr << USAGE << std::endl;
         exit(EXIT_FAILURE);
     }
 }
@@ -156,6 +179,7 @@ Fractal* Parser::factory(int type, int dim) const
             return new VF(dim);
         default:
             parseError();
+            return nullptr;
     }
 }
 
@@ -177,19 +201,25 @@ std::vector<Fractal*>& Parser::parseFile(std::string& path, std::vector<Fractal 
    }
    while(std::getline(is, line))
    {
-       Tokenizer tok(line);
-       input.assign(tok.begin(),tok.end());
+       if(lines > EMPTY)
+       {
+           parseError();
+       }
+       if(!(line.compare("") || line.compare(",")))
+       {
+           ++lines;
+           continue;
+       }
+       boost::char_separator<char> sep{","};
+//       Tokenizer tok(line);
+       Tokenizer tok{line, sep};
+       input.assign(tok.begin(), tok.end());
        if (input.size() != 2)
        {
            parseError();
        }
        lineValidity(input);
        f.push_back(factory(std::stoi(input[0]), std::stoi(input[1])));
-       lines++;
-   }
-   if (lines == 0)
-   {
-       parseError();
    }
    return f;
 }

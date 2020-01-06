@@ -37,7 +37,7 @@ protected:
      * @param col a col index of a grid's cell
      * @param n dimension of a fractal
      */
-    void populateFractal(const int& row,const int& col, int n);
+    void populateFractal(const int& row, const int& col, int n);
 
     /**
      * Calls the recursive function populateFractal with the right initialization params
@@ -87,7 +87,8 @@ public:
 /**
  * A parser class that parses a csv file, creates fractals vector and holds it.
  */
-class Parser {
+class Parser
+{
 
 private:
     std::vector<Fractal*>& fractal;

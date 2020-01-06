@@ -36,7 +36,7 @@ Fractal::Fractal(const int& dimension)
 SC::SC(const int& dimension): Fractal(dimension)
 {
     basicSize = SC_SIZE;
-    gridSize = (int) pow(basicSize,dim);
+    gridSize = (int) pow(basicSize, dim);
 
     std::vector<bool> inner1(gridSize, false);
     fractalVec fractalVec1(gridSize, inner1);
@@ -57,7 +57,7 @@ SC::SC(const int& dimension): Fractal(dimension)
 ST::ST(const int& dimension): Fractal(dimension)
 {
     basicSize = ST_SIZE;
-    gridSize = (int) pow(basicSize,dim);
+    gridSize = (int) pow(basicSize, dim);
 
     std::vector<bool> inner1(gridSize, false);
     fractalVec fractalVec1(gridSize, inner1);
@@ -78,7 +78,7 @@ ST::ST(const int& dimension): Fractal(dimension)
 VF::VF(const int& dimension): Fractal(dimension)
 {
     basicSize = VF_SIZE;
-    gridSize = (int) pow(basicSize,dim);
+    gridSize = (int) pow(basicSize, dim);
 
     std::vector<bool> inner1(gridSize, false);
     fractalVec fractalVec1(gridSize, inner1);
@@ -102,7 +102,7 @@ void Fractal::populateFractal(const int& row, const int& col, int n)
 {
     int newRow = row;
     int newCol = col;
-    if (n==0)
+    if (n == 0)
     {
         shape[newRow][newCol] = true;
         return;
@@ -128,7 +128,7 @@ void Fractal::populateFractal(const int& row, const int& col, int n)
  */
 void Fractal::createShape()
 {
-    populateFractal(0,0, dim);
+    populateFractal(0, 0, dim);
 }
 
 /**
@@ -142,11 +142,11 @@ void Fractal::printFractal()
         for (int k = 0; k < gridSize; ++k)
         {
             printVal = (shape[i][k])? ASTRIX:SPC;
-            std::cout<<printVal;
+            std::cout << printVal;
         }
-        std::cout<<std::endl;
+        std::cout << std::endl;
     }
-    std::cout<<std::endl;
+    std::cout << std::endl;
 }
 
 
